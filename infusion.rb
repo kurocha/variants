@@ -5,22 +5,23 @@
 
 required_version "0.5"
 
-define_package "variant-debug" do |package|
-	package.provides "Variant/debug" do
+define_target "variant-debug" do |target|
+	target.provides "Variant/debug" do
 		default variant "debug"
 		
 		append buildflags %W{-O0 -g -Wall -Wmissing-prototypes}
 		append linkflags %W{-g}
 	end
 	
-	package.provides :variant => "Variant/debug"
+	target.provides :variant => "Variant/debug"
 end
 
-define_package "variant-release" do |package|
-	package.provides "Variant/release" do
+define_target "variant-release" do |target|
+	target.provides "Variant/release" do
 		default variant "release"
+		
 		append buildflags %W{-O3 -DNDEBUG}
 	end
 	
-	package.provides :variant => "Variant/release"
+	target.provides :variant => "Variant/release"
 end

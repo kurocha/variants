@@ -3,7 +3,7 @@
 #  This file is part of the "Teapot" project, and is released under the MIT license.
 #
 
-teapot_version "0.8.0"
+teapot_version "1.0.0"
 
 define_target "variant-debug" do |target|
 	target.provides "Variant/debug" do
@@ -11,6 +11,14 @@ define_target "variant-debug" do |target|
 		
 		append buildflags %W{-O0 -g -Wall -Wmissing-prototypes}
 		append linkflags %W{-g}
+		
+		define Rule, "log.files" do
+			input :files
+		
+			apply do |arguments|
+				puts "Input files: #{arguments[:files].to_a.inspect}"
+			end
+		end
 	end
 	
 	target.provides :variant => "Variant/debug"

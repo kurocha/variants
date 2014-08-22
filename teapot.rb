@@ -6,6 +6,9 @@
 teapot_version "1.0.0"
 
 define_target "variant-debug" do |target|
+	# We should choose debug by default, unless release is specified explicity:
+	target.priority = 10
+	
 	target.provides "Variant/debug" do
 		default variant "debug"
 		

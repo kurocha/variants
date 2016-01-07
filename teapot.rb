@@ -5,6 +5,14 @@
 
 teapot_version "1.0.0"
 
+# Platforms
+define_target "variant-generic" do |target|
+	target.provides "Variant/generic" do
+		default build_prefix {platforms_path + "cache/#{platform_name}-#{variant}"}
+		default install_prefix {platforms_path + "#{platform_name}-#{variant}"}
+	end
+end
+
 define_target "variant-debug" do |target|
 	# We should choose debug by default, unless release is specified explicity:
 	target.priority = 10
@@ -24,6 +32,7 @@ define_target "variant-debug" do |target|
 		end
 	end
 	
+	target.depends "Variant/generic"
 	target.provides :variant => "Variant/debug"
 end
 
@@ -34,5 +43,6 @@ define_target "variant-release" do |target|
 		append buildflags %W{-O3 -DNDEBUG}
 	end
 	
+	target.depends "Variant/generic"
 	target.provides :variant => "Variant/release"
 end

@@ -40,9 +40,21 @@ define_target "variant-release" do |target|
 	target.provides "Variant/release" do
 		default variant "release"
 		
-		append buildflags %W{-O3 -DNDEBUG}
+		append buildflags %W{-O3 -march=native -DNDEBUG}
 	end
 	
 	target.depends "Variant/generic"
 	target.provides :variant => "Variant/release"
+end
+
+define_target "variant-release-lto" do |target|
+	target.provides "Variant/release-lto" do
+		default variant "release-lto"
+		
+		append linkflags '-fuse-ld=gold'
+		append buildflags %W{-O3 -flto -march=native -DNDEBUG}
+	end
+	
+	target.depends "Variant/generic"
+	target.provides :variant => "Variant/release-lto"
 end

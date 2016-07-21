@@ -22,14 +22,6 @@ define_target "variant-debug" do |target|
 		
 		append buildflags %W{-O0 -g -Wall -Wmissing-prototypes}
 		append linkflags %W{-g}
-		
-		define Rule, "log.files" do
-			input :files
-		
-			apply do |arguments|
-				puts "Input files: #{arguments[:files].to_a.inspect}"
-			end
-		end
 	end
 	
 	target.depends "Variant/generic"

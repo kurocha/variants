@@ -28,6 +28,19 @@ define_target "variant-debug" do |target|
 	target.provides :variant => "Variant/debug"
 end
 
+define_target "variant-sanitize" do |target|
+	target.provides "Variant/sanitize" do
+		default variant "sanitize"
+		
+		append buildflags %W{-O0 -g -Wall -Wmissing-prototypes -fsanitize=address,undefined}
+		append linkflags %W{-g -fsanitize=address,undefined}
+	end
+	
+	target.depends "Variant/generic"
+	target.provides :variant => "Variant/sanitize"
+end
+
+
 define_target "variant-release" do |target|
 	target.provides "Variant/release" do
 		default variant "release"

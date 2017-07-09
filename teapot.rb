@@ -20,7 +20,8 @@ define_target "variant-debug" do |target|
 	target.provides "Variant/debug" do
 		default variant "debug"
 		
-		append buildflags %W{-O0 -g -Wall -Wmissing-prototypes}
+		append buildflags %W{-O0 -g -Wall}
+		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g}
 	end
 	
@@ -32,7 +33,8 @@ define_target "variant-sanitize" do |target|
 	target.provides "Variant/sanitize" do
 		default variant "sanitize"
 		
-		append buildflags %W{-O0 -g -Wall -Wmissing-prototypes -fsanitize=address,undefined}
+		append buildflags %W{-O0 -g -Wall -fsanitize=address,undefined}
+		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g -fsanitize=address,undefined}
 	end
 	

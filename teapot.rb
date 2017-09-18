@@ -33,7 +33,7 @@ define_target "variant-sanitize" do |target|
 	target.provides "Variant/sanitize" do
 		default variant "sanitize"
 		
-		append buildflags %W{-O0 -g -Wall -fsanitize=address,undefined}
+		append buildflags %W{-O0 -g -Wall -fsanitize=address,undefined -DVARIANT_SANITIZE}
 		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g -fsanitize=address,undefined}
 	end

@@ -20,7 +20,7 @@ define_target "variant-debug" do |target|
 	target.provides "Variant/debug" do
 		default variant "debug"
 		
-		append buildflags %W{-O0 -g -Wall}
+		append buildflags %W{-O0 -g -Wall -fno-limit-debug-info}
 		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g}
 	end

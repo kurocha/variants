@@ -21,7 +21,7 @@ define_target "variant-debug" do |target|
 		default variant "debug"
 		
 		# Clang suggested to add -fno-limit-debug-info but it's not supported by gcc.
-		append buildflags %W{-O0 -g -Wall -Wextra}
+		append buildflags %W{-O0 -g -Wall}
 		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g}
 	end

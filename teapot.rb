@@ -21,7 +21,7 @@ define_target "variant-debug" do |target|
 		default variant "debug"
 		
 		# Clang suggested to add -fno-limit-debug-info but it's not supported by gcc.
-		append buildflags %W{-O0 -g -Wall}
+		append buildflags %W{-O0 -g -Wall -Wextra}
 		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g}
 	end
@@ -35,7 +35,6 @@ define_target "variant-sanitize" do |target|
 		default variant "sanitize"
 		
 		append buildflags %W{-O0 -g -Wall -fno-omit-frame-pointer -fsanitize=address,undefined -DVARIANT_SANITIZE}
-		append cflags %W{-Wmissing-prototypes}
 		append linkflags %W{-g -fsanitize=address,undefined}
 	end
 	

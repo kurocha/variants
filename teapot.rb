@@ -3,7 +3,7 @@
 #  This file is part of the "Teapot" project, and is released under the MIT license.
 #
 
-teapot_version "3.0"
+teapot_version "2.3"
 
 # Platforms
 define_target "variant-generic" do |target|

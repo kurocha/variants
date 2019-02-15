@@ -3,7 +3,7 @@
 #  This file is part of the "Teapot" project, and is released under the MIT license.
 #
 
-teapot_version "2.3"
+teapot_version "3.0"
 
 # Platforms
 define_target "variant-generic" do |target|
@@ -26,7 +26,7 @@ define_target "variant-debug" do |target|
 		append linkflags %W{-g}
 	end
 	
-	target.depends "Variant/generic"
+	target.depends "Variant/generic", public: true
 	target.provides :variant => "Variant/debug"
 end
 
@@ -38,10 +38,9 @@ define_target "variant-sanitize" do |target|
 		append linkflags %W{-g -fsanitize=address,undefined}
 	end
 	
-	target.depends "Variant/generic"
+	target.depends "Variant/generic", public: true
 	target.provides :variant => "Variant/sanitize"
 end
-
 
 define_target "variant-release" do |target|
 	target.provides "Variant/release" do
@@ -50,7 +49,7 @@ define_target "variant-release" do |target|
 		append buildflags %W{-O3 -march=native -DNDEBUG}
 	end
 	
-	target.depends "Variant/generic"
+	target.depends "Variant/generic", public: true
 	target.provides :variant => "Variant/release"
 end
 
@@ -62,6 +61,6 @@ define_target "variant-release-lto" do |target|
 		append buildflags %W{-O3 -flto -march=native -DNDEBUG}
 	end
 	
-	target.depends "Variant/generic"
+	target.depends "Variant/generic", public: true
 	target.provides :variant => "Variant/release-lto"
 end
